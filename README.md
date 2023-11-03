@@ -1,1 +1,1 @@
-This is a Github Finder project. In this I use APIs Provided By Github to fetch users, data of single user, All repos of users and search users on Github.Also, make an Elegant frontend to show all the details.
+This is a Github Finder project using React. In this I use APIs Provided By Github to fetch users, data of single user, All repos of users and search users on Github.Also, make an Elegant frontend to show all the details.
