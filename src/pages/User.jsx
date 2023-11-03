@@ -5,16 +5,20 @@ import Spinner from "../components/shared/Spinner";
 import { useContext, useEffect } from "react";
 import GithubContext from "../context/github/githubContext";
 import RepoList from "../components/repos/RepoList";
+import { getUserAndRepos } from "../context/github/GithubAction";
 
 function User() {
-  const { getUser, user, loading, repos, getUserRepos } =
-    useContext(GithubContext);
+  const { user, dispatch, loading, repos } = useContext(GithubContext);
   const params = useParams();
   useEffect(() => {
-    getUser(params.login);
-    getUserRepos(params.login);
+    dispatch({ type: "SET_LOADING" });
+    const getUserData = async () => {
+      const userData = await getUserAndRepos(params.login);
+      dispatch({ type: "GET_USER_AND_REPOS", payload: userData });
+    };
+    getUserData();
     //// eslint-disable-next-line react-hooks/exaustive-deps
-  }, []);
+  }, [dispatch, params.login]);
   const {
     name,
     type,
